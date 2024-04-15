@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 20px;
+    animation: fadeInUp 1.5s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <form class="login-form" id="loginForm" onsubmit="return validateForm()">
+      <label for="email">Email:</label><br>
+      <input type="text" id="email" name="email"><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password"><br><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      // Perform simple obfuscation on email and password
+      var obfuscatedEmail = obfuscate(email);
+      var obfuscatedPassword = obfuscate(password);
+
+      // Check if obfuscated email and password match
+      if ((obfuscatedEmail === "enc1" && obfuscatedPassword === "enc2") ||
+          (obfuscatedEmail === "enc3" && obfuscatedPassword === "enc4") ||
+          (obfuscatedEmail === "enc5" && obfuscatedPassword === "enc6")) {
+        // Redirect to main.html on successful login
+        window.location.href = "main.html";
+        return false;
+      } else {
+        alert("Invalid email or password. Please try again.");
+        return false;
+      }
+    }
+
+    // Simple obfuscation function
+    function obfuscate(str) {
+      return btoa(str); // You can use a more complex obfuscation algorithm if needed
+    }
+  </script>
+</body>
+</html>
