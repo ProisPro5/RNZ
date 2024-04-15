@@ -90,14 +90,10 @@
       var email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
 
-      // Perform simple obfuscation on email and password
-      var obfuscatedEmail = obfuscate(email);
-      var obfuscatedPassword = obfuscate(password);
-
-      // Check if obfuscated email and password match
-      if ((obfuscatedEmail === "enc1" && obfuscatedPassword === "enc2") ||
-          (obfuscatedEmail === "enc3" && obfuscatedPassword === "enc4") ||
-          (obfuscatedEmail === "enc5" && obfuscatedPassword === "enc6")) {
+ // Check if email and password match
+      if ((email === "zain@rnz.com" && password === "zain1209") ||
+          (email === "noman@rnz.com" && password === "noman7209") ||
+          (email === "rayan@rnz.com" && password === "rayan1509")) {
         // Redirect to main.html on successful login
         window.location.href = "main.html";
         return false;
@@ -105,11 +101,6 @@
         alert("Invalid email or password. Please try again.");
         return false;
       }
-    }
-
-    // Simple obfuscation function
-    function obfuscate(str) {
-      return btoa(str); // You can use a more complex obfuscation algorithm if needed
     }
   </script>
 </body>
