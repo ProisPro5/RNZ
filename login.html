@@ -24,18 +24,6 @@
     font-size: 3em;
     color: #333;
     margin-bottom: 20px;
-    animation: fadeInUp 1.5s ease-out;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   .login-form {
@@ -49,7 +37,7 @@
     margin-bottom: 5px;
   }
 
-  input[type="text"],
+  input[type="email"],
   input[type="password"] {
     padding: 8px;
     margin-bottom: 10px;
@@ -78,28 +66,31 @@
     <h1>Login</h1>
     <form class="login-form" id="loginForm" onsubmit="return validateForm()">
       <label for="email">Email:</label><br>
-      <input type="text" id="email" name="email"><br>
+      <input type="email" id="email" name="email" required><br>
       <label for="password">Password:</label><br>
-      <input type="password" id="password" name="password"><br><br>
+      <input type="password" id="password" name="password" required><br><br>
       <input type="submit" value="Login">
     </form>
   </div>
 
   <script>
     function validateForm() {
-      var email = document.getElementById("email").value;
+      var email = document.getElementById("email").value.toLowerCase(); // Convert email to lowercase
       var password = document.getElementById("password").value;
 
- // Check if email and password match
-      if ((email === "zain@rnz.com" && password === "zain1209") ||
-          (email === "noman@rnz.com" && password === "noman7209") ||
-          (email === "rayan@rnz.com" && password === "rayan1509")) {
-        // Redirect to main.html on successful login
-        window.location.href = "main.html";
-        return false;
+      var credentials = {
+        "zain@rnz.com": "zain1209",
+        "noman@rnz.com": "noman7209",
+        "rayan@rnz.com": "rayan1509"
+      };
+
+      // Check if the email exists in the credentials object and passwords match
+      if (credentials[email] && credentials[email] === password) {
+        window.location.href = "main.html"; // Redirect on successful login
+        return false; // Prevent form from submitting traditionally
       } else {
         alert("Invalid email or password. Please try again.");
-        return false;
+        return false; // Prevent form from submitting traditionally
       }
     }
   </script>
