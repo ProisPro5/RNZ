@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File Upload and Download</title>
+</head>
+<body>
+    <h1>Upload your files</h1>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        Select file to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload File" name="submit">
+    </form>
+
+    <h2>Download Files</h2>
+    <?php
+        $dir = "uploads/";
+        if (is_dir($dir)){
+            if ($dh = opendir($dir)){
+                while (($file = readdir($dh)) !== false){
+                    if ($file != "." && $file != "..") {
+                        echo "<a href='".$dir.$file."'>$file</a><br>";
+                    }
+                }
+                closedir($dh);
+            }
+        }
+    ?>
+</body>
+</html>
